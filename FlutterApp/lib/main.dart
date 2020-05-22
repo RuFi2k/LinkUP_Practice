@@ -35,9 +35,47 @@ class _MenuWidgetState extends State<MenuWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Header(),
           Categories(),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Top Cash Transactions',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.0,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                  child: Container(
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Container(
+                          height: 10.0,
+                          width: 10.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [Color(0xFFA151F2), Color(0xFFCB9EFA)]
+                            ),
+                          ),
+                          child: Text("Hello!"),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -78,13 +116,13 @@ class _Categories extends State<Categories>{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.all(15.0),
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CategoryButton(
                   icon: Icons.home,
@@ -107,7 +145,7 @@ class _Categories extends State<Categories>{
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CategoryButton(
                   icon: Icons.restaurant,
@@ -130,7 +168,7 @@ class _Categories extends State<Categories>{
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CategoryButton(
                   icon: Icons.mail,
