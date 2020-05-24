@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:FlutterApp/UI/components/categorybutton.dart';
 
-class Categories extends StatefulWidget{
-  Categories({Key key}) : super(key: key);
-
-  _Categories createState() => _Categories();
-}
-
-class _Categories extends State<Categories>{
+class Categories extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Padding(
