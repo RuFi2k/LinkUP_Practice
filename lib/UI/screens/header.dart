@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatefulWidget{
-  Header({Key key}) : super(key: key);
+  final String text;
+  final List<OutlineButton> buttons;
+  Header(this.text, {this.buttons, Key key}) : super(key: key);
 
   _Header createState() => _Header();
 }
@@ -19,7 +20,7 @@ class _Header extends State<Header>{
           colors: [Color(0xFF9C0EEE), Color(0xFF3D02A0)],
         ),
         image: DecorationImage(
-          image: AssetImage("assets/images/headerB.png"),
+          image: AssetImage("assets/images/headerBG.png"),
           fit: BoxFit.cover
         ),
       ),
@@ -32,7 +33,7 @@ class _Header extends State<Header>{
             Padding(
               padding: EdgeInsets.only(top: 100.0),
               child: Text(
-                'Transactions',
+                widget.text,
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.bold,

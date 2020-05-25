@@ -5,17 +5,13 @@ import 'package:FlutterApp/UI/screens/toptransactions.dart';
 import 'package:flutter/material.dart';
 
 class TransactionPage extends StatelessWidget{
-  static const String _title = 'This is an app title';
-
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Color(0xFFF4FAFF),
         body: ListView(
           children: <Widget>[
-            Header(),
+            Header('Transactions'),
             Categories(),
             TopTransactions(),
           ],
@@ -29,7 +25,6 @@ class TransactionPage extends StatelessWidget{
           elevation: 100.0,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      ),
-    );
+      );
   }
 }
