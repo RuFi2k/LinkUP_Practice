@@ -1,4 +1,14 @@
-import 'file:///C:/Users/RuFi/Desktop/Practice/FlutterApp/lib/UI/pages/transactions.dart';
+import 'package:FlutterApp/UI/pages/transactions.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(TransactionPage());
+void main() => runApp(App());
+
+class App extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      title: 'App title',
+      home: TransactionPage(),
+    );
+  }
+}

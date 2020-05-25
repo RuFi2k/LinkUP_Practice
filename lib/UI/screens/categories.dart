@@ -1,3 +1,4 @@
+import 'package:FlutterApp/BL/Enums/TransactionCategories.dart';
 import 'package:flutter/material.dart';
 import 'package:FlutterApp/UI/components/categorybutton.dart';
 
@@ -16,17 +17,20 @@ class Categories extends StatelessWidget{
                 CategoryButton(
                   icon: Icons.home,
                   text: 'Home',
-                  color: Color(0xFFFCC76F)
+                  color: Color(0xFFFCC76F),
+                  category: TransactionCategoriesEnum.Home,
                 ),
                 CategoryButton(
                   icon: Icons.shopping_cart,
                   text: 'Shopping',
-                  color: Color(0xFFFF7BAA)
+                  color: Color(0xFFFF7BAA),
+                  category: TransactionCategoriesEnum.Shopping,
                 ),
                 CategoryButton(
                   icon: Icons.time_to_leave,
                   text: 'Transport',
-                  color: Color(0xFF41D9FD)
+                  color: Color(0xFF41D9FD),
+                  category: TransactionCategoriesEnum.Transport,
                 ),
               ],
             ),
@@ -39,17 +43,20 @@ class Categories extends StatelessWidget{
                 CategoryButton(
                   icon: Icons.restaurant,
                   text: 'Food & Drink',
-                  color: Color(0xFFFB9F77)
+                  color: Color(0xFFFB9F77),
+                  category: TransactionCategoriesEnum.Food,
                 ),
                 CategoryButton(
                   icon: Icons.volume_up,
                   text: 'Campaign',
-                  color: Color(0xFF63E5FE)
+                  color: Color(0xFF63E5FE),
+                  category: TransactionCategoriesEnum.Campaign,
                 ),
                 CategoryButton(
                   icon: Icons.flag,
                   text: 'Sports',
-                  color: Color(0xFFFBBF5D)
+                  color: Color(0xFFFBBF5D),
+                  category: TransactionCategoriesEnum.Sports,
                 ),
               ],
             ),
@@ -62,17 +69,20 @@ class Categories extends StatelessWidget{
                 CategoryButton(
                   icon: Icons.mail,
                   text: 'Marketing',
-                  color: Color(0xFFFF7CAB)
+                  color: Color(0xFFFF7CAB),
+                  category: TransactionCategoriesEnum.Marketing,
                 ),
                 CategoryButton(
                   icon: Icons.payment,
                   text: 'Coupon',
-                  color: Color(0xFFF98D62)
+                  color: Color(0xFFF98D62),
+                  category: TransactionCategoriesEnum.Coupon,
                 ),
                 CategoryButton(
                   icon: Icons.note,
                   text: 'Taxes & Feeds',
-                  color: Color(0xFF2ED4FD)
+                  color: Color(0xFF2ED4FD),
+                  category: TransactionCategoriesEnum.Taxes,
                 ),
               ],
             ),
