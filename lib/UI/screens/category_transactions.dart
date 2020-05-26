@@ -1,8 +1,7 @@
-import 'package:FlutterApp/BL/Enums/TransactionCategories.dart';
-import 'package:FlutterApp/BL/Models/TransactionRecordModel.dart';
-import 'package:FlutterApp/UI/components/transactionRecord.dart';
-import 'package:FlutterApp/UI/screens/header.dart';
-import 'package:FlutterApp/UI/screens/menu.dart';
+import 'package:FlutterApp/data_layer/enums/transaction_categories.dart';
+import 'package:FlutterApp/data_layer/models/transaction_record_model.dart';
+import 'package:FlutterApp/UI/components/transaction_record.dart';
+import 'package:FlutterApp/UI/components/header.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTransactions extends StatefulWidget{
@@ -18,13 +17,11 @@ class CategoryTransactions extends StatefulWidget{
 class _CategoryTransactions extends State<CategoryTransactions>{
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-        backgroundColor: Color(0xFFF4FAFF),
-        body: ListView(
+    return ListView(
           children: <Widget>[
             Header(getTitle()),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0),
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Column(
                 children: <Widget>[
                   for(TransactionRecordModel model in widget.transactionList)
@@ -33,17 +30,7 @@ class _CategoryTransactions extends State<CategoryTransactions>{
               ),
             ),
           ],
-        ),
-        bottomNavigationBar: MenuWidget(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-          backgroundColor: Color(0xFF7227E5),
-          elevation: 100.0,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      );
+        );
   }
 
   String getTitle(){

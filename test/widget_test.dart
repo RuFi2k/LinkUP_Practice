@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:FlutterApp/UI/pages/transactions.dart';
+import 'file:///C:/Users/RuFi/Desktop/Practice/FlutterApp/lib/UI/screens/transactions.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
