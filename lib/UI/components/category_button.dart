@@ -1,6 +1,6 @@
-import 'package:FlutterApp/BL/Enums/TransactionCategories.dart';
-import 'package:FlutterApp/BL/Models/TransactionRecordModel.dart';
-import 'package:FlutterApp/UI/pages/CategoryTransactions.dart';
+import 'package:FlutterApp/UI/screens/category_transactions.dart';
+import 'package:FlutterApp/data_layer/enums/transaction_categories.dart';
+import 'package:FlutterApp/data_layer/models/transaction_record_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryButton extends StatefulWidget {
@@ -29,9 +29,9 @@ class _CategoryButtonState extends State<CategoryButton>{
         color: Color(0xFFFFFFFF),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            offset: Offset(2.0, 2.0),
-            blurRadius: 10.0,
-            spreadRadius: 1.0,
+            offset: Offset(2, 2),
+            blurRadius: 10,
+            spreadRadius: 1,
             color: Color(0x88000000),
           ),
         ],
@@ -43,8 +43,8 @@ class _CategoryButtonState extends State<CategoryButton>{
               builder: (context) =>
                   CategoryTransactions(widget.category,
                       <TransactionRecordModel>[
-                        new TransactionRecordModel(40.0, 'Description'),
-                        new TransactionRecordModel(-25.0, 'New Description'),
+                        TransactionRecordModel(42, 'Description'),
+                        TransactionRecordModel(-27, 'New Description'),
                       ]),
             )
           );
@@ -56,14 +56,14 @@ class _CategoryButtonState extends State<CategoryButton>{
               Icon(
                 widget.icon,
                 color: widget.color,
-                size: 30.0
+                size: 30
               ),
               Text(
                 widget.text,
                 style: TextStyle(
                   color: Color(0xFF000000),
                   fontWeight: FontWeight.bold,
-                  fontSize: 12.0
+                  fontSize: 12
               ))
             ],
           ),

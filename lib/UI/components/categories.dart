@@ -1,16 +1,16 @@
-import 'package:FlutterApp/BL/Enums/TransactionCategories.dart';
+import 'package:FlutterApp/data_layer/enums/transaction_categories.dart';
 import 'package:flutter/material.dart';
-import 'package:FlutterApp/UI/components/categorybutton.dart';
+import 'package:FlutterApp/UI/components/category_button.dart';
 
 class Categories extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(15),
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -36,7 +36,7 @@ class Categories extends StatelessWidget{
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -62,7 +62,7 @@ class Categories extends StatelessWidget{
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

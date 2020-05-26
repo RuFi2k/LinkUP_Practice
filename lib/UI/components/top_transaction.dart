@@ -26,15 +26,15 @@ class _Transaction extends State<Transaction>{
           borderRadius: BorderRadius.circular(5.0),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              offset: Offset(2.0, 2.0),
-              blurRadius: 10.0,
-              spreadRadius: 1.0,
+              offset: Offset(2, 2),
+              blurRadius: 10,
+              spreadRadius: 1,
               color: Color(0x88000000),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,24 +42,24 @@ class _Transaction extends State<Transaction>{
               Icon(
                 widget.icon,
                 color: Color(0xFFFFFFFF),
-                size: 30.0,
+                size: 30,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                      '${widget.amount < 0 ? '-' : '+'}${widget.currency}${widget.amount.abs().toStringAsFixed(2)}',
+                      getAmount(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFFFFFFF),
-                        fontSize: 17.0,
+                        fontSize: 17,
                       )
                   ),
                   Text(
                       widget.status,
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
-                        fontSize: 13.0,
+                        fontSize: 13,
                       )
                   ),
                 ],
@@ -69,5 +69,10 @@ class _Transaction extends State<Transaction>{
         ),
       ),
     );
+  }
+
+  String getAmount(){
+    return '${widget.amount < 0 ? '-' : '+'}'
+        '${widget.currency}${widget.amount.abs().toStringAsFixed(2)}';
   }
 }

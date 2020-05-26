@@ -12,19 +12,19 @@ class _TransactionRecord extends State<TransactionRecord>{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.5),
+      padding: EdgeInsets.symmetric(vertical: 7.5),
       child: Container(
-        height: 75.0,
-        width: 350.0,
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        height: 75,
+        width: 350,
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.black.withOpacity(0.25),
-              offset: Offset(0.0, 4.0),
-              blurRadius: 4.0,
+              offset: Offset(0, 4),
+              blurRadius: 4,
             ),
           ],
         ),
@@ -35,14 +35,14 @@ class _TransactionRecord extends State<TransactionRecord>{
               getAmount(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.0,
+                fontSize: 20,
               ),
             ),
             Text(
               widget.description,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.0,
+                fontSize: 20,
               ),
             ),
           ],

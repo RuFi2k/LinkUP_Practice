@@ -25,13 +25,13 @@ class _Header extends State<Header>{
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 100.0),
+              padding: EdgeInsets.only(top: 100),
               child: Text(
                 widget.text,
                 style: TextStyle(
@@ -42,7 +42,7 @@ class _Header extends State<Header>{
               )
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 30.0),
+              padding: EdgeInsets.only(bottom: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -52,15 +52,15 @@ class _Header extends State<Header>{
                         'Expenses',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17.0,
+                          fontSize: 17,
                         ),
                       ),
                     ),
-                    width: 115.0,
-                    height: 35.0,
+                    width: 115,
+                    height: 35,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFB36DE7), width: 1.0)
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Color(0xFFB36DE7), width: 1)
                     ),
                   ),
                   Container(
@@ -68,7 +68,7 @@ class _Header extends State<Header>{
                       'Income',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.5),
-                        fontSize: 17.0,
+                        fontSize: 17,
                       ),
                     ),
                   )
