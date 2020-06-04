@@ -1,6 +1,6 @@
-import 'file:///C:/Users/RuFi/Desktop/Practice/FlutterApp/lib/UI/components/categories.dart';
-import 'file:///C:/Users/RuFi/Desktop/Practice/FlutterApp/lib/UI/components/header.dart';
-import 'file:///C:/Users/RuFi/Desktop/Practice/FlutterApp/lib/UI/components/top_transactions.dart';
+import 'package:FlutterApp/UI/components/categories.dart';
+import 'package:FlutterApp/UI/components/header.dart';
+import 'package:FlutterApp/UI/components/top_transactions.dart';
 import 'package:flutter/material.dart';
 
 class TransactionPage extends StatelessWidget{

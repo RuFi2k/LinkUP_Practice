@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "663109555130",
+    "firebase_url": "https://linkuppractice.firebaseio.com",
+    "project_id": "linkuppractice",
+    "storage_bucket": "linkuppractice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663109555130:android:4a8b3235245dc8e3a80383",
+        "android_client_info": {
+          "package_name": "com.rufi.FlutterApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663109555130-ql10rsad21eft3u1rmv2230hcf41kgpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpcHkYVx-GaK6_tIYXv5o2BOrX4MzJzFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663109555130-ql10rsad21eft3u1rmv2230hcf41kgpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

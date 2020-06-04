@@ -1,4 +1,4 @@
-enum TransactionCategoriesEnum{
+enum TransactionCategoriesEnum {
   Home,
   Shopping,
   Transport,
@@ -8,4 +8,10 @@ enum TransactionCategoriesEnum{
   Marketing,
   Coupon,
   Taxes
+}
+
+class CategoryEnumExtensions {
+  static String EnumToString(TransactionCategoriesEnum enumerator) {
+    return enumerator.toString().replaceAll('TransactionCategoriesEnum.', '');
+  }
 }
