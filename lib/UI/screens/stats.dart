@@ -23,11 +23,11 @@ class _StatisticPage extends State<StatisticPage> {
 
   _generateData() {
     List<Task> pieData = <Task>[
-      Task('Name', Color(0xFFF9A219), 30.0, icon: Icons.add),
-      Task('Name2', Color(0xFFFF8B92), 27.0, icon: Icons.add),
-      Task('Name3', Color(0xFFFF4889), 18.0, icon: Icons.add),
-      Task('Name4', Color(0xFF2ED6FE), 16.0, icon: Icons.add),
-      Task('Name5', Color(0xFFC491FB), 9.0, icon: Icons.add),
+      Task('Name', Color(0xFFF9A219), 50.0, icon: Icons.add),
+      Task('Name2', Color(0xFFFF8B92), 25.0, icon: Icons.add),
+      Task('Name3', Color(0xFFFF4889), 10.0, icon: Icons.add),
+      Task('Name4', Color(0xFF2ED6FE), 7.0, icon: Icons.add),
+      Task('Name5', Color(0xFFC491FB), 8.0, icon: Icons.add),
     ];
 
     _seriesData.add(
@@ -114,11 +114,18 @@ class _StatisticPage extends State<StatisticPage> {
 
   Widget _buildChart() {
     return Container(
-      height: 300,
+      height: 320,
       child: chart.PieChart(
         _seriesData,
         animate: true,
-        animationDuration: Duration(seconds: 2),
+        animationDuration: Duration(milliseconds: 500),
+        behaviors: [
+          chart.DatumLegend(
+            outsideJustification: chart.OutsideJustification.middleDrawArea,
+            horizontalFirst: false,
+            desiredMaxRows: 3,
+          ),
+        ],
         defaultRenderer: chart.ArcRendererConfig(
           arcWidth: 60,
           arcRendererDecorators: [
