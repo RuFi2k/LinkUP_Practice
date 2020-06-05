@@ -3,6 +3,7 @@ import 'package:FlutterApp/UI/screens/auth_wrapper.dart';
 import 'package:FlutterApp/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:keyboard_visibility/keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(App());
@@ -15,7 +16,17 @@ class App extends StatefulWidget {
 
 class _App extends State<App> {
   int _currentMenuIndex = 0;
-  bool menuVisible = true;
+  bool keyboardOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    KeyboardVisibilityNotification().addNewListener(
+      onChange: (bool visible) {
+        setState(() => keyboardOpen = visible);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,31 +36,9 @@ class _App extends State<App> {
         title: 'App title',
         home: Scaffold(
           backgroundColor: Color(0xFFF4FAFF),
-          body: AuthWrapper(_currentMenuIndex, menuVisible),
-//              (() {
-//            switch (_currentMenuIndex) {
-//              case 0:
-//                return TransactionPage();
-//                break;
-//              case 1:
-//                return CategoryTransactions(
-//                    TransactionCategoriesEnum.Home, <TransactionRecordModel>[
-//                  TransactionRecordModel(100, 'Description'),
-//                  TransactionRecordModel(100, 'Description'),
-//                ]);
-//                break;
-//              case 3:
-//                return Account(null);
-//                break;
-//              case 4:
-//                return StatisticPage(<Task>[
-//                  Task('Name', Color(0xFF000000), 25),
-//                ], 100);
-//                break;
-//              default:
-//                return null;
-//            }
-//          }()),
+          body: AuthWrapper(
+            _currentMenuIndex,
+          ),
           bottomNavigationBar: MenuWidget(
             onSelect: (index) {
               setState(() {
@@ -57,18 +46,15 @@ class _App extends State<App> {
               });
             },
           ),
-          floatingActionButton: (() {
-            if (menuVisible) {
-              return FloatingActionButton(
-                onPressed: () {},
-                tooltip: 'Increment',
-                child: Icon(Icons.add),
-                backgroundColor: Color(0xFF7227E5),
-                elevation: 100,
-              );
-            } else
-              return null;
-          }()),
+          floatingActionButton: keyboardOpen
+              ? SizedBox()
+              : FloatingActionButton(
+                  onPressed: () {},
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                  backgroundColor: Color(0xFF7227E5),
+                  elevation: 100,
+                ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
         ),

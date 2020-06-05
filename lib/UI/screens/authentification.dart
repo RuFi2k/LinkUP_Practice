@@ -1,5 +1,4 @@
 import 'package:FlutterApp/UI/components/header.dart';
-import 'package:FlutterApp/UI/screens/register.dart';
 import 'package:FlutterApp/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,9 @@ class SignIn extends StatelessWidget {
   final TextEditingController _mailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final AuthService _authService = AuthService();
+  final VoidCallback toRegister;
+
+  SignIn({this.toRegister});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class SignIn extends StatelessWidget {
                           child: Text('Sign In',
                               style: TextStyle(color: Colors.white)),
                           onPressed: () async {
-                            var user = await _authService.signIn(
+                            await _authService.signIn(
                                 _mailController.text, _passController.text);
                           },
                         ),
@@ -61,8 +63,7 @@ class SignIn extends StatelessWidget {
                           child: Text('Create an account',
                               style: TextStyle(color: Colors.white)),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Register()));
+                            toRegister();
                           },
                         )
                       ],
