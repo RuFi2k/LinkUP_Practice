@@ -5,8 +5,6 @@ import 'package:FlutterApp/UI/screens/register.dart';
 import 'package:FlutterApp/UI/screens/stats.dart';
 import 'package:FlutterApp/UI/screens/transactions.dart';
 import 'package:FlutterApp/data_layer/enums/transaction_categories.dart';
-import 'package:FlutterApp/data_layer/models/task.dart';
-import 'package:FlutterApp/data_layer/models/transaction_record_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,19 +46,13 @@ class _AuthWrapper extends State<AuthWrapper> {
           });
           break;
         case 1:
-          return CategoryTransactions(
-              _transactionCategory, <TransactionRecordModel>[
-            TransactionRecordModel(100, 'Description'),
-            TransactionRecordModel(100, 'Description'),
-          ]);
+          return CategoryTransactions(_transactionCategory, user.uid);
           break;
         case 3:
           return Account(null);
           break;
         case 4:
-          return StatisticPage(<Task>[
-            Task('Name', Color(0xFF000000), 25),
-          ], 100);
+          return StatisticPage();
           break;
         default:
           return null;

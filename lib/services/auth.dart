@@ -14,6 +14,10 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+//      await TransactionService(user_id: user.uid).addRecord(
+//          amount: 100,
+//          description: 'some desc',
+//          category: TransactionCategoriesEnum.Home);
       return user;
     } catch (e) {
       throw new Exception(e.toString());

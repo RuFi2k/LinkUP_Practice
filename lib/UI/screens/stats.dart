@@ -1,191 +1,28 @@
 import 'package:FlutterApp/UI/components/header.dart';
-import 'package:FlutterApp/data_layer/models/task.dart';
-import 'package:charts_flutter/flutter.dart' as chart;
+import 'package:FlutterApp/UI/components/stats_body.dart';
+import 'package:FlutterApp/services/transactionDBService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StatisticPage extends StatefulWidget {
-  final List<Task> chartData;
-  final double amount;
-
-  StatisticPage(this.chartData, this.amount, {Key key}) : super(key: key);
+  StatisticPage({Key key}) : super(key: key);
 
   _StatisticPage createState() => _StatisticPage();
 }
 
 class _StatisticPage extends State<StatisticPage> {
   @override
-  void initState() {
-    _seriesData = List<chart.Series<Task, String>>();
-    _generateData(); //TODO: This is temporary method to check some data displaying on chart
-  }
-
-  List<chart.Series<Task, String>> _seriesData;
-
-  _generateData() {
-    List<Task> pieData = <Task>[
-      Task('Name', Color(0xFFF9A219), 50.0, icon: Icons.add),
-      Task('Name2', Color(0xFFFF8B92), 25.0, icon: Icons.add),
-      Task('Name3', Color(0xFFFF4889), 10.0, icon: Icons.add),
-      Task('Name4', Color(0xFF2ED6FE), 7.0, icon: Icons.add),
-      Task('Name5', Color(0xFFC491FB), 8.0, icon: Icons.add),
-    ];
-
-    _seriesData.add(
-      chart.Series(
-        data: pieData,
-        domainFn: (Task task, _) => task.name,
-        measureFn: (Task task, _) => task.percentage,
-        colorFn: (Task task, _) => chart.ColorUtil.fromDartColor(task.color),
-        id: 'Total expenses',
-        labelAccessorFn: (Task task, _) => '${task.name}\n(${task.percentage})',
-      ),
-    );
-  }
-
-  String generateAmountString() {
-    return '${widget.amount < 0 ? "-" : "+"}\$${widget.amount.abs().toInt()}';
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Header('Expenses Report'),
-        Column(
-          children: <Widget>[
-            _buildChartSection(),
-            _buildAvgSection(),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _buildChartSection() {
-    return Padding(
-      padding: EdgeInsets.all(15),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: Offset(0, 4),
-              blurRadius: 4,
-              color: Color(0x88000000),
-            )
-          ],
-        ),
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            _buildTotalAmount(),
-            _buildTotalExpensesTitle(),
-            _buildChart(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTotalAmount() {
-    return Center(
-      child: Text(
-        '${generateAmountString()}',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 26,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTotalExpensesTitle() {
-    return Center(
-      child: Text(
-        'Total Expenses',
-        style: TextStyle(
-          fontSize: 20,
-          color: Color(0xFFC7D6EA),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildChart() {
-    return Container(
-      height: 320,
-      child: chart.PieChart(
-        _seriesData,
-        animate: true,
-        animationDuration: Duration(milliseconds: 500),
-        behaviors: [
-          chart.DatumLegend(
-            outsideJustification: chart.OutsideJustification.middleDrawArea,
-            horizontalFirst: false,
-            desiredMaxRows: 3,
-          ),
+    final user = Provider.of<FirebaseUser>(context);
+    return StreamProvider<QuerySnapshot>.value(
+      value: TransactionService(user_id: user.uid).getAlltransactions(),
+      child: ListView(
+        children: <Widget>[
+          Header('Expenses Report'),
+          StatisticBody(),
         ],
-        defaultRenderer: chart.ArcRendererConfig(
-          arcWidth: 60,
-          arcRendererDecorators: [
-            chart.ArcLabelDecorator(
-              outsideLabelStyleSpec: chart.TextStyleSpec(
-                fontSize: 18,
-              ),
-              labelPosition: chart.ArcLabelPosition.inside,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAvgSection() {
-    return Padding(
-      padding: EdgeInsets.all(15),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: Offset(0, 4),
-              blurRadius: 4,
-              color: Color(0x88000000),
-            )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            //TODO: Line chart with average expenses by days here
-            _buildAvgAmount(),
-            _buildAvgTitle(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAvgAmount() {
-    return Center(
-      child: Text(
-        '850',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-      ),
-    );
-  }
-
-  Widget _buildAvgTitle() {
-    return Center(
-      child: Text(
-        'Avg Expenses',
-        style: TextStyle(
-          fontSize: 16,
-          color: Color(0xFFBECFE7),
-        ),
       ),
     );
   }

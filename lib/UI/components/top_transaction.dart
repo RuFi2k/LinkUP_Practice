@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Transaction extends StatefulWidget{
+class TopTransaction extends StatefulWidget {
   final IconData icon;
   final double amount;
   final String status;
   final String currency;
   final List<Color> colors;
-  Transaction(this.icon, this.amount, this.status, this.currency, this.colors, {Key key}) : super(key: key);
+  TopTransaction(
+      this.icon, this.amount, this.status, this.currency, this.colors,
+      {Key key})
+      : super(key: key);
 
-  _Transaction createState() => _Transaction();
+  _TopTransaction createState() => _TopTransaction();
 }
 
-class _Transaction extends State<Transaction>{
-  Widget build(BuildContext context){
+class _TopTransaction extends State<TopTransaction> {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
@@ -47,21 +50,17 @@ class _Transaction extends State<Transaction>{
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                      getAmount(),
+                  Text(getAmount(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFFFFFFF),
                         fontSize: 17,
-                      )
-                  ),
-                  Text(
-                      widget.status,
+                      )),
+                  Text(widget.status,
                       style: TextStyle(
                         color: Color(0xFFFFFFFF),
                         fontSize: 13,
-                      )
-                  ),
+                      )),
                 ],
               )
             ],
@@ -71,7 +70,7 @@ class _Transaction extends State<Transaction>{
     );
   }
 
-  String getAmount(){
+  String getAmount() {
     return '${widget.amount < 0 ? '-' : '+'}'
         '${widget.currency}${widget.amount.abs().toStringAsFixed(2)}';
   }
