@@ -51,7 +51,7 @@ class Account extends StatelessWidget {
                         Text('Email'),
                         Text(
                           //_user.email,
-                          'filyk31@gmail.com',
+                          _user.email,
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
@@ -65,7 +65,7 @@ class Account extends StatelessWidget {
                         Text('Unique hash'),
                         Text(
                           //_user.email,
-                          'RYJJ55ARY2M8AARY',
+                          _user.uid,
                           style: TextStyle(fontSize: 20),
                         ),
                       ],

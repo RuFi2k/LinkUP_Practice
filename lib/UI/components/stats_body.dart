@@ -59,7 +59,7 @@ class _StatisticBody extends State<StatisticBody> {
   }
 
   String generateAmountString() {
-    return '${total < 0 ? "-" : "+"}\$${total.abs().toInt()}';
+    return '${total < 0 ? "-" : "+"}\$${total.abs().toStringAsFixed(2)}';
   }
 
   @override
@@ -183,7 +183,7 @@ class _StatisticBody extends State<StatisticBody> {
   Widget _buildAvgAmount() {
     return Center(
       child: Text(
-        avg.toString(),
+        avg.toStringAsFixed(2),
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
       ),
     );

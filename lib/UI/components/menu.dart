@@ -21,7 +21,7 @@ class _MenuWidgetState extends State<MenuWidget> {
   }
 
   void _onItemTapped(int index) {
-    int resultIndex = index == 2 ? 0 : index;
+    int resultIndex = index;
     setState(() {
       _selectedIndex = resultIndex;
       widget.onSelect(resultIndex);

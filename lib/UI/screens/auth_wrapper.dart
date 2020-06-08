@@ -1,4 +1,5 @@
 import 'package:FlutterApp/UI/screens/account.dart';
+import 'package:FlutterApp/UI/screens/add_transaction.dart';
 import 'package:FlutterApp/UI/screens/authentification.dart';
 import 'package:FlutterApp/UI/screens/category_transactions.dart';
 import 'package:FlutterApp/UI/screens/register.dart';
@@ -23,7 +24,7 @@ class _AuthWrapper extends State<AuthWrapper> {
       TransactionCategoriesEnum.Home;
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<FirebaseUser>(context);
+    FirebaseUser user = Provider.of<FirebaseUser>(context);
 
     if (user == null)
       switch (widget._isRegister) {
@@ -48,8 +49,11 @@ class _AuthWrapper extends State<AuthWrapper> {
         case 1:
           return CategoryTransactions(_transactionCategory, user.uid);
           break;
+        case 2:
+          return AddTransaction();
+          break;
         case 3:
-          return Account(null);
+          return Account(user);
           break;
         case 4:
           return StatisticPage();

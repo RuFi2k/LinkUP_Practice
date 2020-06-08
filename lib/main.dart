@@ -49,7 +49,11 @@ class _App extends State<App> {
           floatingActionButton: keyboardOpen
               ? SizedBox()
               : FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _currentMenuIndex = 2;
+                    });
+                  },
                   tooltip: 'Increment',
                   child: Icon(Icons.add),
                   backgroundColor: Color(0xFF7227E5),
