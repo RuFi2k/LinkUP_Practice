@@ -28,8 +28,8 @@ class _AddTransactionBody extends State<AddTransactionBody> {
             color: Colors.white,
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
                 blurRadius: 4,
+                color: Colors.black.withOpacity(0.3),
                 offset: Offset(0, 4),
               ),
             ],
