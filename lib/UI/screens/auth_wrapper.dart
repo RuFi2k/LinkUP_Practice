@@ -26,15 +26,12 @@ class _AuthWrapper extends State<AuthWrapper> {
   Widget build(BuildContext context) {
     FirebaseUser user = Provider.of<FirebaseUser>(context);
 
-    if (user == null)
-      switch (widget._isRegister) {
-        case true:
-          return Register(toLogin: loginRegisterSwitcher(false));
-          break;
-        default:
-          return SignIn(toRegister: loginRegisterSwitcher(true));
+    if (user == null) {
+      if (widget._isRegister) {
+        return Register(toLogin: loginRegisterSwitcher(false));
       }
-    else {
+      return SignIn(toRegister: loginRegisterSwitcher(true));
+    } else {
       switch (widget._currentMenuIndex) {
         case 0:
           return TransactionPage(transactionToggle: (category) {

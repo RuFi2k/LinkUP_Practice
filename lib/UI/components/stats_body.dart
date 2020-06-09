@@ -1,7 +1,11 @@
+import 'package:FlutterApp/UI/components/avg_section.dart';
+import 'package:FlutterApp/UI/components/chart.dart';
+import 'package:FlutterApp/UI/components/total_amount.dart';
+import 'package:FlutterApp/UI/components/total_expenses_title.dart';
 import 'package:FlutterApp/data_layer/enums/transaction_categories.dart';
 import 'package:FlutterApp/data_layer/models/task.dart';
+import 'package:FlutterApp/data_layer/models/transaction_record_model.dart';
 import 'package:charts_flutter/flutter.dart' as chart;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,18 +23,22 @@ class _StatisticBody extends State<StatisticBody> {
   @override
   void initState() {
     _seriesData = List<chart.Series<Task, String>>();
-    //_generateData(); //TODO: This is temporary method to check some data displaying on chart
   }
 
   _generateData() {
+    total = 0;
     Map categoryObjects = Map();
-    for (var doc in Provider.of<QuerySnapshot>(context).documents) {
-      if (categoryObjects.containsKey(doc.data['category'])) {
-        categoryObjects[doc.data['category']] +=
-            doc.data['amount'].toDouble().abs();
+    var transactions = Provider.of<List<TransactionRecordModel>>(context);
+    for (var doc in transactions) {
+      if (categoryObjects
+          .containsKey(CategoryEnumExtensions.EnumToString(doc.category))) {
+        categoryObjects[CategoryEnumExtensions.EnumToString(doc.category)] +=
+            doc.amount.toDouble().abs();
       } else {
-        categoryObjects.addAll(
-            {doc.data['category']: doc.data['amount'].toDouble().abs()});
+        categoryObjects.addAll({
+          CategoryEnumExtensions.EnumToString(doc.category):
+              doc.amount.toDouble().abs()
+        });
       }
     }
     List<Task> pieData = <Task>[];
@@ -56,10 +64,14 @@ class _StatisticBody extends State<StatisticBody> {
         labelAccessorFn: (Task task, _) => '${task.name}\n(${task.percentage})',
       ),
     );
-  }
 
-  String generateAmountString() {
-    return '${total < 0 ? "-" : "+"}\$${total.abs().toStringAsFixed(2)}';
+    if (_seriesData.length > 1) {
+      var tmp = _seriesData[_seriesData.length - 1];
+      _seriesData.clear();
+      _seriesData.add(tmp);
+      print(_seriesData);
+      print(_seriesData.length);
+    }
   }
 
   @override
@@ -68,7 +80,7 @@ class _StatisticBody extends State<StatisticBody> {
     return Column(
       children: <Widget>[
         _buildChartSection(),
-        _buildAvgSection(),
+        AvgSection(avg),
       ],
     );
   }
@@ -91,111 +103,10 @@ class _StatisticBody extends State<StatisticBody> {
         padding: EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
-            _buildTotalAmount(),
-            _buildTotalExpensesTitle(),
-            _buildChart(),
+            TotalAmount(total),
+            TotalExpensesTitle(),
+            Chart(_seriesData),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTotalAmount() {
-    return Center(
-      child: Text(
-        '${generateAmountString()}',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 26,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTotalExpensesTitle() {
-    return Center(
-      child: Text(
-        'Total Expenses',
-        style: TextStyle(
-          fontSize: 20,
-          color: Color(0xFFC7D6EA),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildChart() {
-    return Container(
-      height: 320,
-      child: chart.PieChart(
-        _seriesData,
-        animate: true,
-        animationDuration: Duration(milliseconds: 500),
-        behaviors: [
-          chart.DatumLegend(
-            outsideJustification: chart.OutsideJustification.middleDrawArea,
-            horizontalFirst: false,
-            desiredMaxRows: 3,
-          ),
-        ],
-        defaultRenderer: chart.ArcRendererConfig(
-          arcWidth: 60,
-          arcRendererDecorators: [
-            chart.ArcLabelDecorator(
-              outsideLabelStyleSpec: chart.TextStyleSpec(
-                fontSize: 18,
-              ),
-              labelPosition: chart.ArcLabelPosition.inside,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAvgSection() {
-    return Padding(
-      padding: EdgeInsets.all(15),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: Offset(0, 4),
-              blurRadius: 4,
-              color: Color(0x88000000),
-            )
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            _buildAvgAmount(),
-            _buildAvgTitle(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAvgAmount() {
-    return Center(
-      child: Text(
-        avg.toStringAsFixed(2),
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-      ),
-    );
-  }
-
-  Widget _buildAvgTitle() {
-    return Center(
-      child: Text(
-        'Avg Expenses',
-        style: TextStyle(
-          fontSize: 16,
-          color: Color(0xFFBECFE7),
         ),
       ),
     );

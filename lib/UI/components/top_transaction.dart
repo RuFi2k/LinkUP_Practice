@@ -1,3 +1,4 @@
+import 'package:FlutterApp/UI/components/top_transaction_text.dart';
 import 'package:flutter/material.dart';
 
 class TopTransaction extends StatefulWidget {
@@ -47,31 +48,11 @@ class _TopTransaction extends State<TopTransaction> {
                 color: Color(0xFFFFFFFF),
                 size: 30,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(getAmount(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 17,
-                      )),
-                  Text(widget.status,
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 13,
-                      )),
-                ],
-              )
+              TransactionText(widget.amount, widget.status, widget.currency)
             ],
           ),
         ),
       ),
     );
-  }
-
-  String getAmount() {
-    return '${widget.amount < 0 ? '-' : '+'}'
-        '${widget.currency}${widget.amount.abs().toStringAsFixed(2)}';
   }
 }
