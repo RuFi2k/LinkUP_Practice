@@ -16,7 +16,7 @@ class _AddTransactionBody extends State<AddTransactionBody> {
   @override
   Widget build(BuildContext context) {
     TransactionService service =
-        TransactionService(user_id: Provider.of<FirebaseUser>(context).uid);
+        TransactionService(userId: Provider.of<FirebaseUser>(context).uid);
     return Padding(
       padding: EdgeInsets.all(15),
       child: Form(

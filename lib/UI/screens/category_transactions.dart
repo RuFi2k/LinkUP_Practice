@@ -20,7 +20,7 @@ class _CategoryTransactions extends State<CategoryTransactions> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
-      value: TransactionService(user_id: widget.user_id)
+      value: TransactionService(userId: widget.user_id)
           .getCategoryRecords(category: widget.categoryType),
       child: ListView(
         children: <Widget>[

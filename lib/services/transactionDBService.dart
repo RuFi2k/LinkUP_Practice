@@ -6,12 +6,12 @@ import 'package:uuid/uuid.dart';
 
 class TransactionService {
   //collection reference
-  final String user_id;
+  final String userId;
   final uuid = Uuid();
   final CollectionReference transactionCollection =
       Firestore.instance.collection('expencesdb');
 
-  TransactionService({this.user_id});
+  TransactionService({this.userId});
 
   Future addRecord(
       {@required double amount,
@@ -22,14 +22,14 @@ class TransactionService {
       'category': CategoryEnumExtensions.EnumToString(category),
       'currency': '\$',
       'description': description,
-      'userid': user_id,
+      'userid': userId,
     });
   }
 
   Stream<QuerySnapshot> getCategoryRecords(
       {TransactionCategoriesEnum category}) {
     return transactionCollection
-        .where('userid', isEqualTo: user_id)
+        .where('userid', isEqualTo: userId)
         .where('category',
             isEqualTo: CategoryEnumExtensions.EnumToString(category))
         .snapshots();
@@ -37,7 +37,7 @@ class TransactionService {
 
   Stream<QuerySnapshot> getTopTransactions() {
     return transactionCollection
-        .where('userid', isEqualTo: user_id)
+        .where('userid', isEqualTo: userId)
         .orderBy('amount', descending: true)
         .limit(3)
         .snapshots();
@@ -55,7 +55,7 @@ class TransactionService {
 
   Stream<List<TransactionRecordModel>> get Alltransactions {
     var allTransactions =
-        transactionCollection.where('userid', isEqualTo: user_id);
+        transactionCollection.where('userid', isEqualTo: userId);
     return allTransactions.snapshots().map(mapTransactions);
   }
 }

@@ -17,7 +17,7 @@ class _StatisticPage extends State<StatisticPage> {
   Widget build(BuildContext context) {
     final user = Provider.of<FirebaseUser>(context);
     return StreamProvider<List<TransactionRecordModel>>.value(
-      value: TransactionService(user_id: user.uid).Alltransactions,
+      value: TransactionService(userId: user.uid).Alltransactions,
       child: ListView(
         children: <Widget>[
           Header('Expenses Report'),

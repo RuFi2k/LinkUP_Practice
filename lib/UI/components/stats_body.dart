@@ -69,8 +69,6 @@ class _StatisticBody extends State<StatisticBody> {
       var tmp = _seriesData[_seriesData.length - 1];
       _seriesData.clear();
       _seriesData.add(tmp);
-      print(_seriesData);
-      print(_seriesData.length);
     }
   }
 

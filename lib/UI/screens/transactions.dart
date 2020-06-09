@@ -17,7 +17,7 @@ class TransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var user = Provider.of<FirebaseUser>(context);
     return StreamProvider<QuerySnapshot>.value(
-      value: TransactionService(user_id: user.uid).getTopTransactions(),
+      value: TransactionService(userId: user.uid).getTopTransactions(),
       child: ListView(
         children: <Widget>[
           Header('Transactions'),
